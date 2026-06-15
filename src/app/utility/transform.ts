@@ -138,4 +138,23 @@ export class Transform {
       this.heading.equalsRoughly(other.heading, degTol)
     );
   }
+
+  /**
+   * timestep(velocityX, velocityY, angularVelocityDegrees, deltaTimeSecs)
+   *
+   * Updates the transform's position and heading based on velocities over a time delta.
+   * - velocityX: velocity in the X direction (world space, pixels per second)
+   * - velocityY: velocity in the Y direction (world space, pixels per second)
+   * - angularVelocityDegrees: rotation velocity (degrees per second)
+   * - deltaTimeSecs: time step in seconds
+   *
+   * Example:
+   * const t = new Transform(0, 0, Heading.NORTH);
+   * t.timestep(10, 20, 45, 0.016); // move 10px/s in X, 20px/s in Y, rotate 45 deg/s over 16ms
+   */
+  timestep(velocityX: number, velocityY: number, angularVelocityDegrees: number, deltaTimeSecs: number): this {
+    this.translate(velocityX * deltaTimeSecs, velocityY * deltaTimeSecs);
+    this.rotate(angularVelocityDegrees * deltaTimeSecs);
+    return this;
+  }
 }
