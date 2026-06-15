@@ -81,30 +81,30 @@ describe('Transform', () => {
     expect(b.equalsRoughly(c, 0.001, 1)).toBe(true);
   });
 
-  it('timestep with velocity and angular velocity', () => {
+  it('timestep with forward speed and no rotation', () => {
     t.set(0, 0, Heading.NORTH);
-    // Move at 100 px/s in X and 50 px/s in Y for 0.1 seconds
-    t.timestep(100, 50, 0, 0.1);
-    expect(t.pos.x).toBeCloseTo(10);
-    expect(t.pos.y).toBeCloseTo(5);
+    // Move forward at 100 px/s for 0.1 seconds
+    t.timestep(100, 0, 0.1);
+    expect(t.pos.x).toBeCloseTo(0);
+    expect(t.pos.y).toBeCloseTo(-10);
     expect(t.heading.degrees).toBeCloseTo(Heading.NORTH);
   });
 
   it('timestep with rotation', () => {
     t.set(0, 0, Heading.NORTH);
     // Rotate at 90 degrees/second for 1 second
-    t.timestep(0, 0, 90, 1);
+    t.timestep(0, 90, 1);
     expect(t.pos.x).toBeCloseTo(0);
     expect(t.pos.y).toBeCloseTo(0);
     expect(t.heading.degrees).toBeCloseTo(90);
   });
 
-  it('timestep with combined velocity and rotation', () => {
+  it('timestep with combined forward speed and rotation', () => {
     t.set(10, 20, Heading.NORTH);
-    // Move at 10 px/s in X, 20 px/s in Y, and rotate at 45 deg/s for 0.5 seconds
-    t.timestep(10, 20, 45, 0.5);
-    expect(t.pos.x).toBeCloseTo(15);
-    expect(t.pos.y).toBeCloseTo(30);
+    // Move forward at 10 px/s and rotate at 45 deg/s for 0.5 seconds
+    t.timestep(10, 45, 0.5);
+    expect(t.pos.x).toBeCloseTo(10);
+    expect(t.pos.y).toBeCloseTo(15);
     expect(t.heading.degrees).toBeCloseTo(22.5);
   });
 });

@@ -140,20 +140,19 @@ export class Transform {
   }
 
   /**
-   * timestep(velocityX, velocityY, angularVelocityDegrees, deltaTimeSecs)
+   * timestep(speedForward, angularVelocityDegrees, deltaTimeSecs)
    *
-   * Updates the transform's position and heading based on velocities over a time delta.
-   * - velocityX: velocity in the X direction (world space, pixels per second)
-   * - velocityY: velocity in the Y direction (world space, pixels per second)
+   * Updates the transform's position and heading based on forward speed and rotation.
+   * - speedForward: forward speed relative to current heading (pixels per second)
    * - angularVelocityDegrees: rotation velocity (degrees per second)
    * - deltaTimeSecs: time step in seconds
    *
    * Example:
    * const t = new Transform(0, 0, Heading.NORTH);
-   * t.timestep(10, 20, 45, 0.016); // move 10px/s in X, 20px/s in Y, rotate 45 deg/s over 16ms
+   * t.timestep(10, 45, 0.016); // move forward 10px/s, rotate 45 deg/s over 16ms
    */
-  timestep(velocityX: number, velocityY: number, angularVelocityDegrees: number, deltaTimeSecs: number): this {
-    this.translate(velocityX * deltaTimeSecs, velocityY * deltaTimeSecs);
+  timestep(speedForward: number, angularVelocityDegrees: number, deltaTimeSecs: number): this {
+    this.translateForward(speedForward * deltaTimeSecs);
     this.rotate(angularVelocityDegrees * deltaTimeSecs);
     return this;
   }
