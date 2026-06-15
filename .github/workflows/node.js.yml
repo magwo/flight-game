@@ -37,5 +37,7 @@ jobs:
       with:
         # Path of the directory containing the static assets.
         path: dist/flight-game/browser/ # default is _site/
-          
-        
+    - name: Deploy GitHub Pages site
+      uses: actions/deploy-pages@v5
+
+              
