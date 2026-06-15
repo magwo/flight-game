@@ -26,11 +26,11 @@ describe('Sprite', () => {
   });
 
   it('should compute imagePath correctly', () => {
-    expect(component.imagePath()).toBe('/sprites/player.png');
+    expect(component.imagePath()).toBe('sprites/player.png');
   });
 
   it('should compute imageCss correctly', () => {
-    expect(component.imageCss()).toBe('url(/sprites/player.png)');
+    expect(component.imageCss()).toBe('url(sprites/player.png)');
   });
 
   it('should compute rotation style with 45 degree offset', () => {
@@ -52,7 +52,7 @@ describe('Sprite', () => {
   it('should handle different sprite names', () => {
     fixture.componentRef.setInput('spriteName', 'enemy.png');
     fixture.detectChanges();
-    expect(component.imagePath()).toBe('/sprites/enemy.png');
-    expect(component.imageCss()).toBe('url(/sprites/enemy.png)');
+    expect(component.imagePath()).toBe('sprites/enemy.png');
+    expect(component.imageCss()).toBe('url(sprites/enemy.png)');
   });
 });

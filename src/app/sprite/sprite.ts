@@ -20,7 +20,7 @@ export class Sprite {
   readonly rotation = input.required<number>();
   readonly size = input.required<number>();
 
-  readonly imagePath = computed(() => `/sprites/${this.spriteName()}`);
+  readonly imagePath = computed(() => `sprites/${this.spriteName()}`);
 
   readonly imageCss = computed(() => `url(${this.imagePath()})`);
 
