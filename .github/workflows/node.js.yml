@@ -29,7 +29,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present --base-href /flight-game/
+    - run: npm run build -- --base-href /flight-game/
     - run: npm test
     - uses: actions/upload-artifact@v7.0.1
       with:
