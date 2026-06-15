@@ -20,7 +20,6 @@ export type VehicleSpec = LandVehicle | SeaVehicle | FixedWingAircraft | Helicop
 })
 export class Vehicle {
   readonly spec = input.required<VehicleSpec>();
-  readonly spawn = input.required<{posX: number, posY: number, heading: number}>();
   readonly transform = signal(new Transform(0, 0));
   readonly velocity = signal(0); // meters per second
   readonly angularVelocity = signal(0); // degrees per second
